@@ -1,4 +1,7 @@
 package com.princetobit.Ecommerce.repository;
 
-public interface OrderRepo {
+import com.princetobit.Ecommerce.entity.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepo extends JpaRepository<Order, Long> {
 }

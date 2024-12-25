@@ -1,4 +1,7 @@
 package com.princetobit.Ecommerce.repository;
 
-public interface AddressRepo {
+import com.princetobit.Ecommerce.entity.Address;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AddressRepo extends JpaRepository<Address, Long> {
 }

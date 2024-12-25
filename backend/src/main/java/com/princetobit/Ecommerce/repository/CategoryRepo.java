@@ -1,4 +1,7 @@
 package com.princetobit.Ecommerce.repository;
 
-public class CategoryRepo {
+import com.princetobit.Ecommerce.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepo extends JpaRepository<Category, Long> {
 }
