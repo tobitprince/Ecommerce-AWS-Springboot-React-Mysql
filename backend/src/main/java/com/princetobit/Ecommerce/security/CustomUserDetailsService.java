@@ -1,9 +1,8 @@
-package com.princetobit.Ecommerce.service;
+package com.princetobit.Ecommerce.security;
 
 import com.princetobit.Ecommerce.entity.User;
 import com.princetobit.Ecommerce.exception.NotFoundException;
 import com.princetobit.Ecommerce.repository.UserRepo;
-import com.princetobit.Ecommerce.security.AuthUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
