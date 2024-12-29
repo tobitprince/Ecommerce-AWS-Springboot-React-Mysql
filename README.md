@@ -35,24 +35,33 @@ A full-stack e-commerce application built with Spring Boot backend, React fronte
 spring.datasource.url=jdbc:mysql://localhost:3306/${MYSQL_DATABASE}
 spring.datasource.username=${MYSQL_USERNAME}
 spring.datasource.password=${MYSQL_PASSWORD}
+```
 
 2. Create .env file in backend/src/main/resources with:
+```properties
 MYSQL_USERNAME=your_username
 MYSQL_PASSWORD=your_password
 MYSQL_DATABASE=ecommerce-aws
 SECRETJWT=your_jwt_secret
 ACCESS_KEY_AWS=your_aws_access_key
 SECRET_ACCESS_KEY_AWS=your_aws_secret_key
+```
 
 ## Running Locally
 1. Backend:
+```bash
 cd backend
 mvn spring-boot:run
+```
 
 2.Frontend:
+```bash
 cd frontend
 npm install
 npm start
+```
 
 ## Building
+```bash
 mvn clean install
+```
