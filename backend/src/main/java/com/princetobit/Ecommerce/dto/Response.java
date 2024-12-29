@@ -17,7 +17,7 @@ import java.util.List;
 public class Response {
     private int status;
     private String message;
-    private LocalDateTime timeStamp = LocalDateTime.now();
+    private final LocalDateTime timeStamp = LocalDateTime.now();
 
     private String token;
     private String role;

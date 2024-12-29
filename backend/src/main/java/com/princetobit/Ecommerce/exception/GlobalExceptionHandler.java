@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<Response> handleInvalidCredentialsException(Exception ex, WebRequest request){
         Response errorResponse = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
