@@ -12,7 +12,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderRequest {
 
-    private BigDecimal price;
+    private BigDecimal totalPrice;
     private List<OrderItemRequest> items;
     private Payment paymentInfo;
 }
