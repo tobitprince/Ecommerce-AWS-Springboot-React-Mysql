@@ -1,5 +1,6 @@
 package com.princetobit.Ecommerce.service.impl;
 
+import com.princetobit.Ecommerce.dto.OrderItemDto;
 import com.princetobit.Ecommerce.dto.OrderRequest;
 import com.princetobit.Ecommerce.dto.Response;
 import com.princetobit.Ecommerce.entity.Order;
@@ -14,11 +15,15 @@ import com.princetobit.Ecommerce.repository.OrderRepo;
 import com.princetobit.Ecommerce.repository.ProductRepo;
 import com.princetobit.Ecommerce.service.interf.OrderItemService;
 import com.princetobit.Ecommerce.service.interf.UserService;
+import com.princetobit.Ecommerce.specification.OrderItemSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -63,15 +68,48 @@ public class OrderItemServiceImpl implements OrderItemService {
 
         //set the order reference in each orderitem
         orderItems.forEach(orderItem -> orderItem.setOrder(order));
+
+        orderRepo.save(order);
+        return Response.builder()
+                .status(200)
+                .message("Order was successfully placed")
+                .build();
     }
 
     @Override
     public Response updateOrderItemStatus(Long orderItemId, String status) {
-        return null;
+        OrderItem orderItem = orderItemRepo.findById(orderItemId)
+                .orElseThrow(() -> new NotFoundException("Order item not found"));
+
+        orderItem.setStatus(OrderStatus.valueOf(status.toUpperCase()));
+        orderItemRepo.save(orderItem);
+
+        return Response.builder()
+                .status(200)
+                .message("Order status was updated Successfully")
+                .build();
     }
 
     @Override
-    public Response filterOrderItems(OrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endTime, Long itemId, Pageable pageable) {
-        return null;
+    public Response filterOrderItems(OrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate, Long itemId, Pageable pageable) {
+        Specification<OrderItem> spec = Specification.where(OrderItemSpecification.hasStatus(orderStatus))
+                .and(OrderItemSpecification.createdBetween(startDate, endDate))
+                .and(OrderItemSpecification.hasItemId(itemId));
+
+        Page<OrderItem> orderItemPage = orderItemRepo.findAll(spec,pageable);
+
+        if (orderItemPage.isEmpty()) {
+            throw new NotFoundException("No Order found");
+        }
+        List<OrderItemDto> orderItemDtos = orderItemPage.getContent().stream()
+                .map(entityDtoMapper::mapOrderItemToDtoPlusProductAndUser)
+                .collect(Collectors.toList());
+
+        return Response.builder()
+                .status(200)
+                .orderItemList(orderItemDtos)
+                .totalPage(orderItemPage.getTotalPages())
+                .totalElement(orderItemPage.getTotalElements())
+                .build();
     }
 }
