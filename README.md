@@ -69,7 +69,7 @@ mvn clean install
 
 ## Contact
 
-- **Your Name:** [princekiptoo@gmail.com](mailto:princekiptoo@gmail.com)
+- **Name:** [princekiptoo@gmail.com](mailto:princekiptoo@gmail.com)
 - **GitHub:** [https://github.com/tobitprince](https://github.com/tobitprince)
 - **LinkedIn:** [Your LinkedIn Profile](https://www.linkedin.com/in/)
 
