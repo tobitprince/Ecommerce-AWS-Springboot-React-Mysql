@@ -33,9 +33,11 @@ public class User {
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
     private UserRole role;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "user")
     private Address address;
 
     @Column(name = "created_at")

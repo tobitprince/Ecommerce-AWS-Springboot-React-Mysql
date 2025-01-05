@@ -37,7 +37,7 @@ public class ProductController {
     @PutMapping("/update/{productId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> updateProduct(
-            @RequestParam Long productId,
+            @PathVariable Long productId,
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) MultipartFile image,
             @RequestParam(required = false) String name,
@@ -47,7 +47,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.updateProduct(productId, categoryId, image, name, description, price));
     }
 
-    @PutMapping("/delete/{productId}")
+    @DeleteMapping("/delete/{productId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> deleteProduct(@PathVariable Long productId){
         return ResponseEntity.ok(productService.deleteProduct(productId));
@@ -59,11 +59,11 @@ public class ProductController {
     }
 
     @GetMapping("/get-all")
-    public  ResponseEntity<Response> getAllProducts(){
+    public ResponseEntity<Response> getAllProducts(){
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/get-products-by-category/{categoryId}")
+    @GetMapping("/get-products-by-category-id/{categoryId}")
     public ResponseEntity<Response> getProductsByCategory(@PathVariable Long categoryId){
         return ResponseEntity.ok(productService.getProductsByCategory(categoryId));
     }

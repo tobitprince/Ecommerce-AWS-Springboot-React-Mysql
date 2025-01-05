@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
         return Response.builder()
                 .status(200)
-                .message("Product has been Successfully created")
+                .message("Product Has Been Successfully Created")
                 .build();
     }
 
@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
         productRepo.save(product);
         return Response.builder()
                 .status(200)
-                .message("Product has been updated")
+                .message("Product Has Been Updated")
                 .build();
 
     }
@@ -85,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
         productRepo.delete(product);
         return Response.builder()
                 .status(200)
-                .message("Product has been deleted successfully")
+                .message("Product Has Been Deleted Successfully")
                 .build();
     }
 
@@ -102,8 +102,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Response getAllProducts() {
-        List<ProductDto> productList = productRepo.findAll(Sort.by(Sort.Direction.DESC,"id"))
-                .stream()
+        List<Product> products = productRepo.findAll(Sort.by(Sort.Direction.DESC,"id"));
+        List<ProductDto> productList = products.stream()
                 .map(entityDtoMapper::mapProductToDtoBasic)
                 .collect(Collectors.toList());
 
