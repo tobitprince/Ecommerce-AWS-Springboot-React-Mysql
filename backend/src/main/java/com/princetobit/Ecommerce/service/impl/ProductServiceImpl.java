@@ -90,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Response getProductId(Long productId) {
+    public Response getProductById(Long productId) {
         Product product = productRepo.findById(productId).orElseThrow(() -> new NotFoundException("Product not found"));
         ProductDto productDto = entityDtoMapper.mapProductToDtoBasic(product);
 
