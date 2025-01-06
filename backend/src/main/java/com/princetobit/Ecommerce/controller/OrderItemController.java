@@ -28,7 +28,7 @@ public class OrderItemController {
         return ResponseEntity.ok(orderItemService.placeOrder(orderRequest));
     }
 
-    @PutMapping("/update-item-status/{orderItemId}")
+    @PutMapping("/update-order-item-status/{orderItemId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> updateOrderItemStatus(
             @PathVariable Long orderItemId,
