@@ -34,7 +34,7 @@ const cartReducer = (state, action) => {
             return {...state, cart:updatedCart}
         }
 
-        case 'INCEREMENT_ITEM': {
+        case 'INCREMENT_ITEM': {
             const updatedCart = state.cart.map(item =>
                 item.id === action.payload.id
                 ? {...item, quantity: item.quantity + 1}

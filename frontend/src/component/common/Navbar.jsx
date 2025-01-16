@@ -15,9 +15,9 @@ const Navbar = () => {
         setSearchValue(e.target.value);
     }
 
-    const handleSearchSubmit = async(e) =>{
+    const handleSearchSubmit = async (e) =>{
         e.preventDefault();
-        navigate(`?/search=${searchValue}`)
+        navigate(`/?search=${searchValue}`)
     }
 
     const handleLogout = () =>{
@@ -33,7 +33,7 @@ const Navbar = () => {
     return(
         <nav className="navbar">
             <div className="navbar-brand">
-                <NavLink to="/"><img src="" alt="logo" /></NavLink>
+                <NavLink to="/"><img src="https://princetobit-ecommerce.s3.eu-north-1.amazonaws.com/image.jpg" alt="logo" /></NavLink>
             </div>
             <form className="navbar-search" onSubmit={handleSearchSubmit}>
                 <input type="text"

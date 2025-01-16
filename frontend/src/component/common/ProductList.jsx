@@ -9,10 +9,10 @@ const ProductList = ({products}) => {
     const addToCart= (product) =>{
         dispatch({type: 'ADD_ITEM', payload: product});
     }
-    const incrementItem = ({product}) => {
+    const incrementItem = (product) => {
         dispatch({type: 'INCREMENT_ITEM', payload: product})
     }
-    const decrementItem = ({product}) => {
+    const decrementItem = (product) => {
         const cartItem = cart.find(item => item.id === product.id);
         if(cartItem && cartItem.quantity > 1){
             dispatch({type: 'DECREMENT_ITEM', payload:product})
@@ -41,7 +41,7 @@ const ProductList = ({products}) => {
                                 <button onClick={() => incrementItem(product)}>+</button>
                             </div>
                         ):(
-                            <button onclick={() => addToCart(product)}>Add To Cart</button>
+                            <button onClick={() => addToCart(product)}>Add To Cart</button>
                         )}
                     </div>
                 )

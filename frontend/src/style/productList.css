@@ -23,6 +23,7 @@
 .product-item a{
     color: inherit;
     width: 250px;
+    text-decoration: none;
 }
 .product-item h3{
     color: #333;
