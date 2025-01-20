@@ -13,7 +13,7 @@ const ProductDetailsPage = () => {
     useEffect(()=>{
         fetchProduct();
 
-    },[productId])
+    }, [productId]);
 
     const fetchProduct = async () => {
         try {
@@ -30,12 +30,12 @@ const ProductDetailsPage = () => {
             dispatch({type: 'ADD_ITEM' , payload: product})
         }
     }
-    const incrementItem = (product) => {
+    const incrementItem = () => {
         if(product){
             dispatch({type: 'INCREMENT_ITEM', payload: product})
         }
     }
-    const decrementItem = (product) => {
+    const decrementItem = () => {
         if(product){
 
             const cartItem = cart.find(item => item.id === product.id);
