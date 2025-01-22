@@ -44,13 +44,13 @@ const Navbar = () => {
             </form>
 
             <div className="navbar-link">
-            <NavLink to="/" activeClassName="active">Home</NavLink>
-            <NavLink to="/category" activeClassName="active">Categories</NavLink>
-            {isAuthenticated &&<NavLink to="/profile" activeClassName="active">myAccount</NavLink>}
-            {isAdmin &&<NavLink to="/admin" activeClassName="active">Admin</NavLink>}
-            {!isAuthenticated &&<NavLink to="/login" activeClassName="active">Login</NavLink>}
+            <NavLink to="/" >Home</NavLink>
+            <NavLink to="/categories" >Categories</NavLink>
+            {isAuthenticated &&<NavLink to="/profile" >myAccount</NavLink>}
+            {isAdmin &&<NavLink to="/admin" >Admin</NavLink>}
+            {!isAuthenticated &&<NavLink to="/login" >Login</NavLink>}
             {isAuthenticated &&<NavLink onClick={handleLogout}>LogOut</NavLink>}
-            <NavLink to="/cart" activeClassName="active">Cart</NavLink>
+            <NavLink to="/cart" >Cart</NavLink>
             </div>
 
         </nav>
