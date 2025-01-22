@@ -23,7 +23,6 @@ const CategoryProductsPage = ()=>{
             setLoading(true)
             const response = await ApiService.getProductsByCategoryId(categoryId)
             const allProducts = response.productList || [];
-            console.log(allProducts)
 
             setTotalPages(Math.ceil(allProducts.length / itemsPerPage));
             setProducts(allProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
@@ -50,9 +49,9 @@ const CategoryProductsPage = ()=>{
             ):(
                 <div>
                     <ProductList products={products}/>
-                    <Pagination currentPage={currentPage}/>
+                    <Pagination currentPage={currentPage}
                     totalPages={totalPages}
-                    onPageChange={handlePageChange}
+                    onPageChange={handlePageChange}/>
                 </div>
 
             )}
