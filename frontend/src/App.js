@@ -7,6 +7,7 @@ import Home from './component/pages/Home';
 import ProductDetailsPage from './component/pages/ProductsDetailsPage';
 import CategoryListPage from './component/pages/CategoryListPage';
 import CategoryProductsPage from './component/pages/CategoryProductsPage';
+import CartPage from './component/pages/CartPage';
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/product/:productId' element={<ProductDetailsPage/>}/>
           <Route exact path='/categories' element={<CategoryListPage/>}/>
           <Route exact path='/category/:categoryId' element={<CategoryProductsPage/>}/>
+          <Route exact path='/cart' element={<CartPage/>}/>
         </Routes>
       <Footer/>
     </CartProvider>
