@@ -8,6 +8,8 @@ import ProductDetailsPage from './component/pages/ProductsDetailsPage';
 import CategoryListPage from './component/pages/CategoryListPage';
 import CategoryProductsPage from './component/pages/CategoryProductsPage';
 import CartPage from './component/pages/CartPage';
+import RegisterPage from './component/pages/RegisterPage';
+import LoginPage from './component/pages/LoginPage';
 
 
 
@@ -22,6 +24,8 @@ function App() {
           <Route exact path='/categories' element={<CategoryListPage/>}/>
           <Route exact path='/category/:categoryId' element={<CategoryProductsPage/>}/>
           <Route exact path='/cart' element={<CartPage/>}/>
+          <Route exact path='/register' element={<RegisterPage/>}/>
+          <Route exact path='/login' element={<LoginPage/>}/>
         </Routes>
       <Footer/>
     </CartProvider>
