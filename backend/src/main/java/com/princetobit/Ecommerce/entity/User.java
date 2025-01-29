@@ -27,11 +27,14 @@ public class User {
     @Column(unique = true)
     @NotBlank(message = "Email is required")
     private String email;
+
     @NotBlank(message = "Password is required")
     private String password;
+
     @Column(name = "phone_number")
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
+    
     private UserRole role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

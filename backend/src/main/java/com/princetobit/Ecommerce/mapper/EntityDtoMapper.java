@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 @Component
 public class EntityDtoMapper {
 
-    //user entity to userDto
+
+    //user entity to user DTO
+
     public UserDto mapUserToDtoBasic(User user){
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
@@ -19,11 +21,9 @@ public class EntityDtoMapper {
         userDto.setName(user.getName());
         return userDto;
 
-
-
     }
 
-    //Address to Dto
+    //Address to DTO Basic
     public AddressDto mapAddressToDtoBasic(Address address){
         AddressDto addressDto = new AddressDto();
         addressDto.setId(address.getId());
@@ -35,26 +35,27 @@ public class EntityDtoMapper {
         return addressDto;
     }
 
-    //Category to Dto
+    //Category to DTO basic
     public CategoryDto mapCategoryToDtoBasic(Category category){
         CategoryDto categoryDto = new CategoryDto();
         categoryDto.setId(category.getId());
         categoryDto.setName(category.getName());
         return categoryDto;
-
-
     }
-    //OrderItem to Dto
+
+
+    //OrderItem to DTO Basics
     public OrderItemDto mapOrderItemToDtoBasic(OrderItem orderItem){
         OrderItemDto orderItemDto = new OrderItemDto();
         orderItemDto.setId(orderItem.getId());
         orderItemDto.setQuantity(orderItem.getQuantity());
         orderItemDto.setPrice(orderItem.getPrice());
         orderItemDto.setStatus(orderItem.getStatus().name());
-        orderItemDto.setCreateAt(orderItem.getCreateAt());
+        orderItemDto.setCreatedAt(orderItem.getCreatedAt());
         return orderItemDto;
     }
-    //Product to Dto
+
+    //Product to DTO Basic
     public ProductDto mapProductToDtoBasic(Product product){
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
@@ -65,46 +66,60 @@ public class EntityDtoMapper {
         return productDto;
     }
 
-    //User to
-    public UserDto mapUserDtoToDtoPlusAddress(User user){
+    public UserDto mapUserToDtoPlusAddress(User user){
+
+        System.out.println("mapUserToDtoPlusAddress is called");
         UserDto userDto = mapUserToDtoBasic(user);
-        if(user.getAddress() != null){
+        if (user.getAddress() != null){
+
             AddressDto addressDto = mapAddressToDtoBasic(user.getAddress());
             userDto.setAddress(addressDto);
+
         }
         return userDto;
     }
 
-    //orderItem  to Dto plus product
-    public OrderItemDto mapOrderItemToDtoPlusProducts(OrderItem orderItem){
+
+    //orderItem to DTO plus product
+    public OrderItemDto mapOrderItemToDtoPlusProduct(OrderItem orderItem){
         OrderItemDto orderItemDto = mapOrderItemToDtoBasic(orderItem);
-        if (orderItemDto.getProduct() != null){
+
+        if (orderItem.getProduct() != null) {
             ProductDto productDto = mapProductToDtoBasic(orderItem.getProduct());
             orderItemDto.setProduct(productDto);
         }
         return orderItemDto;
     }
 
-    //orderItem to Dto Plus product and user
+
+    //OrderItem to DTO plus product and user
     public OrderItemDto mapOrderItemToDtoPlusProductAndUser(OrderItem orderItem){
-        OrderItemDto orderItemDto = mapOrderItemToDtoPlusProducts(orderItem);
-        if(orderItem.getUser() != null){
-            UserDto userDto = mapUserDtoToDtoPlusAddress(orderItem.getUser());
+        OrderItemDto orderItemDto = mapOrderItemToDtoPlusProduct(orderItem);
+
+        if (orderItem.getUser() != null){
+            UserDto userDto = mapUserToDtoPlusAddress(orderItem.getUser());
             orderItemDto.setUser(userDto);
         }
         return orderItemDto;
     }
 
-    //User to Dto with Address and other items history
-    public UserDto mapUserToDtoPlusAddressAndOrderHistory(User user){
-        UserDto userDto = mapUserDtoToDtoPlusAddress(user);
-        if(user.getOrderItemList() != null && !user.getOrderItemList().isEmpty()){
+
+    //USer to DTO with Address and Order Items History
+    public UserDto mapUserToDtoPlusAddressAndOrderHistory(User user) {
+        UserDto userDto = mapUserToDtoPlusAddress(user);
+
+        if (user.getOrderItemList() != null && !user.getOrderItemList().isEmpty()) {
             userDto.setOrderItemList(user.getOrderItemList()
                     .stream()
-                    .map(this::mapOrderItemToDtoPlusProducts)
+                    .map(this::mapOrderItemToDtoPlusProduct)
                     .collect(Collectors.toList()));
         }
         return userDto;
+
     }
+
+
+
+
 
 }
