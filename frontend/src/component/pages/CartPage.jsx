@@ -53,8 +53,11 @@ const CartPage = ()=>{
                 setMessage('')
             },5000);
 
-            if(response.message === 200){
+            if(response.status === 200){
                 dispatch({type: 'CLEAR_CART'})
+                setTimeout(() => {
+                    navigate('/profile');
+                }, 2000);
             }
         } catch (error) {
             setMessage(error.response?.data?.message || error.message || 'Failed to place an order');

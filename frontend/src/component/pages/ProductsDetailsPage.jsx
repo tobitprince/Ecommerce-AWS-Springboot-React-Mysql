@@ -8,7 +8,7 @@ import "../../style/productDetailsPage.css"
 const ProductDetailsPage = () => {
     const {productId} = useParams();
     const {cart, dispatch} = useCart();
-    const {product, setProduct} = useState(null);
+    const [product, setProduct] = useState(null);
 
     useEffect(()=>{
         fetchProduct();

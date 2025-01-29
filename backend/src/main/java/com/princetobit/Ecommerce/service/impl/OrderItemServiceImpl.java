@@ -72,7 +72,7 @@ public class OrderItemServiceImpl implements OrderItemService {
         orderRepo.save(order);
         return Response.builder()
                 .status(200)
-                .message("Order was successfully placed")
+                .message("Order Placed Successfully")
                 .build();
     }
 
