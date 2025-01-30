@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../style/navbar.css'
 import { NavLink, useNavigate} from "react-router-dom"
 import ApiService from "../../service/ApiService";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Navbar = () => {
-     
+
     const [searchValue, setSearchValue] = useState("")
     const navigate = useNavigate();
 
     const isAdmin = ApiService.isAdmin()
     const isAuthenticated = ApiService.isAuthenticated()
+    const [userInfo, setUserInfo] = useState(null)
 
     const handleSearchChange = (e) =>{
         setSearchValue(e.target.value);
@@ -30,6 +32,17 @@ const Navbar = () => {
         }
     }
 
+    useEffect(() =>{
+        fetchUserInfo()
+    }, [])
+
+
+    const fetchUserInfo = async() => {
+        const response = await ApiService.getLoggedInUserInfo()
+        setUserInfo(response.user)
+    }
+
+
     return(
         <nav className="navbar">
             <div className="navbar-brand">
@@ -46,11 +59,12 @@ const Navbar = () => {
             <div className="navbar-link">
             <NavLink to="/" >Home</NavLink>
             <NavLink to="/categories" >Categories</NavLink>
-            {isAuthenticated &&<NavLink to="/profile" >myAccount</NavLink>}
+            <NavLink to="/cart" >Cart</NavLink>
+            {isAuthenticated && userInfo &&<NavLink to="/profile" style={{color:'#143e05'}}><i className="fas fa-user"></i>{userInfo?.name}</NavLink>}
+
             {isAdmin &&<NavLink to="/admin" >Admin</NavLink>}
             {!isAuthenticated &&<NavLink to="/login" >Login</NavLink>}
             {isAuthenticated &&<NavLink onClick={handleLogout}>LogOut</NavLink>}
-            <NavLink to="/cart" >Cart</NavLink>
             </div>
 
         </nav>
