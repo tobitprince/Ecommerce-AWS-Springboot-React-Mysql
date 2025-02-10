@@ -65,7 +65,7 @@ const ProfilePage = () => {
                                 <p><strong>Street: {userInfo?.address.street}</strong></p>
                                 <p><strong>City: {userInfo?.address.city}</strong></p>
                                 <p><strong>State: {userInfo?.address.state}</strong></p>
-                                <p><strong>Zip Code: {userInfo?.address.zipcode}</strong></p>
+                                <p><strong>Zip Code: {userInfo?.address.zipCode}</strong></p>
                                 <p><strong>Country: {userInfo?.address.country}</strong></p>
                             </div>
                         ):(

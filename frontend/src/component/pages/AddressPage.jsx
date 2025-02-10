@@ -9,7 +9,7 @@ const AddressPage = () =>{
         street: '',
         city: '',
         state:'',
-        zipcode:'',
+        zipCode:'',
         country:''
     });
     const [error,setError] = useState(null)
@@ -58,6 +58,55 @@ const AddressPage = () =>{
         <div className="address-page">
             <h2>{location.pathname === '/edit-address'? 'Edit Address' : "Add Address"}</h2>
             {error && <p className='error-message'>{error}</p>}
+
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Street:
+                    <input type="text"
+                    name='street'
+                    value={address.street}
+                    onChange={handleChange}
+                    required />
+                </label>
+                <label>
+                    City:
+                    <input type="text"
+                    name='city'
+                    value={address.city}
+                    onChange={handleChange}
+                    required />
+                </label>
+                <label>
+                    State:
+                    <input type="text"
+                    name='state'
+                    value={address.state}
+                    onChange={handleChange}
+                    required />
+                </label>
+                <label>
+                    Zip Code:
+                    <input type="text"
+                    name='zipCode'
+                    value={address.zipCode}
+                    onChange={handleChange}
+                    required />
+                </label>
+                <label>
+                    Country:
+                    <input type="text"
+                    name='country'
+                    value={address.country}
+                    onChange={handleChange}
+                    required />
+                </label>
+
+                <button type='submit'>{location.pathname === 'edit-address'? 'Edit Address': 'Save Address'}</button>
+
+
+            </form>
         </div>
     )
 }
+
+export default AddressPage;
