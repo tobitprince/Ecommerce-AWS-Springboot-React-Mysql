@@ -12,7 +12,9 @@ import RegisterPage from './component/pages/RegisterPage';
 import LoginPage from './component/pages/LoginPage';
 import ProfilePage from './component/pages/ProfilePage';
 import AddressPage from './component/pages/AddressPage';
-import { ProtectedRoute } from './service/Guard';
+import AdminPage from './component/admin/AdminPage';
+import { AdminRoute, ProtectedRoute } from './service/Guard';
+import AdminCategoryPage from './component/admin/AdminCategoryPage';
 
 
 
@@ -33,6 +35,11 @@ function App() {
           <Route exact path='/profile' element={<ProtectedRoute element={<ProfilePage/>}/>}/>
           <Route exact path='/add-address' element={<ProtectedRoute element={<AddressPage/>}/>}/>
           <Route exact path='/edit-address' element={<ProtectedRoute element={<AddressPage/>}/>}/>
+          <Route exact path='/edit-address' element={<ProtectedRoute element={<AddressPage/>}/>}/>
+
+          <Route exact path='/admin' element={<AdminRoute element={<AdminPage/>}/>}/>
+          <Route exact path='/admin/categories' element={<AdminRoute element={<AdminCategoryPage/>}/>}/>
+
         </Routes>
       <Footer/>
     </CartProvider>

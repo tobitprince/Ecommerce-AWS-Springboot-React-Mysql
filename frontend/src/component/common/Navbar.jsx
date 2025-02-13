@@ -60,7 +60,7 @@ const Navbar = () => {
             <NavLink to="/" >Home</NavLink>
             <NavLink to="/categories" >Categories</NavLink>
             <NavLink to="/cart" >Cart</NavLink>
-            {isAuthenticated && userInfo &&<NavLink to="/profile" style={{color:'#143e05'}}><i className="fas fa-user"></i>{userInfo?.name}</NavLink>}
+            {isAuthenticated && userInfo &&<NavLink to="/profile" style={{color:'#143e05'}}><i className="fas fa-user"></i>{userInfo?.name.charAt(0).toUpperCase() + userInfo.name.slice(1)}</NavLink>}
 
             {isAdmin &&<NavLink to="/admin" >Admin</NavLink>}
             {!isAuthenticated &&<NavLink to="/login" >Login</NavLink>}

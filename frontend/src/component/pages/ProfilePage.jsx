@@ -48,13 +48,13 @@ const ProfilePage = () => {
 
     return(
         <div className="profile-page">
-            <h2>Welcome {userInfo?.name}</h2>
+            <h2>Welcome {userInfo?.name.charAt(0).toUpperCase() + userInfo?.name.slice(1)}</h2>
 
             {error? (
-                <p className='error-messafe'>{error}</p>
+                <p className='error-message'>{error}</p>
             ):(
                 <div className="">
-                    <p><strong>Name : {userInfo?.name}</strong></p>
+                    <p><strong>Name : {userInfo?.name.charAt(0).toUpperCase() + userInfo.name.slice(1)}</strong></p>
                     <p><strong>Email : {userInfo?.email}</strong></p>
                     <p><strong>Phone Number : {userInfo?.phoneNumber}</strong></p>
 
